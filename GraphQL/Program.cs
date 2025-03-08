@@ -1,6 +1,5 @@
-using Google.Protobuf.WellKnownTypes;
 using GraphQLSample.API.GraphQL;
-using HotChocolate;
+using GraphQLSample.API.GraphQL.Types;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +11,7 @@ builder.AddServiceDefaults();
 // Configure GraphQL
 builder.Services
     .AddGraphQLServer()
+    .BindRuntimeType<long, LongAsStringType>()
     .AddQueryType<Query>();
 
 builder.Services.AddControllers();
